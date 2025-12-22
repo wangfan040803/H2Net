@@ -35,7 +35,7 @@ H2Net 是一款基于 RT-DETR 改进的高效目标检测模型，专为水域�
 ### 🎯 跨域泛化能力
 在 VisDrone2019-DET 跨域数据集上验证，mAP50 达 48.2%（+0.8%），召回率 46.7%（+0.7%），展现出对复杂场景的强适应性。
 
-![H2Net 性能对比图](docs/results/image1.png)  
+![H2Net 性能对比图](docs/images/image1.png)  
 *H2Net 在 mAP50 与计算效率的平衡上优于主流模型（测试环境：NVIDIA RTX 4060 Ti，输入尺寸 640×640）*
 
 ---
