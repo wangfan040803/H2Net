@@ -1,8 +1,11 @@
 import warnings
+
 warnings.filterwarnings('ignore')
 import os
+
 import numpy as np
 from prettytable import PrettyTable
+
 from ultralytics import RTDETR
 from ultralytics.utils.torch_utils import model_info
 
@@ -12,26 +15,25 @@ def get_weight_size(path):
     return f'{stats.st_size / 1024 / 1024:.1f}'
 
 if __name__ == '__main__':
-    model_path = 'runs/train/exp/weights/best.pt'
+    model_path = "runs/train/H2Net/weights/best.pt"
     model = RTDETR(model_path) # 选择训练好的权重路径
     result = model.val(data='./datasets/A_drowning_person.yaml',
                       split='val', # split可以选择train、val、test 根据自己的数据集情况来选择.
                       imgsz=640,
                       batch=4,
-                    #   save_json=True, # if you need to cal coco metrice
                       project='runs/val',
                       name='exp',
                       )
-    
+
     if model.task == 'detect': # 仅目标检测任务适用
         model_names = list(result.names.values())
         preprocess_time_per_image = result.speed['preprocess']
         inference_time_per_image = result.speed['inference']
         postprocess_time_per_image = result.speed['postprocess']
         all_time_per_image = preprocess_time_per_image + inference_time_per_image + postprocess_time_per_image
-        
+
         n_l, n_p, n_g, flops = model_info(model.model)
-        
+
         print('-'*20 + '论文上的数据以以下结果为准' + '-'*20)
 
         model_info_table = PrettyTable()
@@ -71,5 +73,5 @@ if __name__ == '__main__':
             f.write(str(model_info_table))
             f.write('\n')
             f.write(str(model_metrice_table))
-        
+
         print('-'*20, f'结果已保存至{result.save_dir}/paper_data.txt...', '-'*20)
