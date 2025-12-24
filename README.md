@@ -126,7 +126,7 @@ H2Net/
 │   └── A_drowning_person.yaml
 ├── docs/                                       # 文档和结果图
 ├── my_cfg/                                     # 模型配置文件
-│   ├──rtdetr-Ortho-P3P4-WTConv-P5.yaml         # H2Net 模型配置文件
+│   ├──H2Net.yaml         # H2Net 模型配置文件
 │   └──rtdetr-r18.yaml                          # RT-DETR-R18 模型配置文件
 ├── train.py                                    # 训练脚本
 └──  val.py                                      # 验证脚本
